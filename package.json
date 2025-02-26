@@ -1,12 +1,20 @@
 {
   "name": "web-components",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "main": "./dist/exports.js",
+  "files": [
+    "./dist"
+  ],
+  "exports": {
+    ".": "./dist/exports.js"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build-library": "rm -rf dist && tsc -p tsconfig.build.json"
   },
   "dependencies": {
     "next": "15.1.7",
