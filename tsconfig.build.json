@@ -19,10 +19,13 @@
     "isolatedModules": true,
     "jsx": "react-jsx", 
     "outDir": "dist", 
-    "declaration": true
+    "declaration": true,
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
   "include": [
-    "components/exports.ts", 
+    "./exports.ts", 
   ], 
   
 }
