@@ -3,3 +3,8 @@ export interface IPageInfo {
   title: string;
   description: string;
 }
+
+export interface ILink {
+  url: string;
+  title: string;
+}
