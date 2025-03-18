@@ -8,3 +8,7 @@ export interface ILink {
   url: string;
   title: string;
 }
+
+export type IMenuItem = ILink & {
+  children?: IMenuItem[];
+};
