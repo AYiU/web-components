@@ -4,25 +4,31 @@ import {
   SheetContent,
   SheetHeader,
   SheetTitle,
-} from "../ui/sheet";
-import { Button } from "../ui/button";
+  SheetClose,
+} from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {
   NavigationMenu,
   NavigationMenuList,
   NavigationMenuLink,
-} from "../ui/navigation-menu";
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+} from "@/components/ui/navigation-menu";
 import { IMenuItem } from "../types";
+import React, { Fragment, ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 type LinkOrNotProps = {
-  url?: string;
-  children: React.ReactNode;
+  href: string | undefined;
+  children: ReactNode;
   className?: string;
 };
 
-function LinkOrNot({ url, children, className }: LinkOrNotProps) {
-  return url ? (
-    <Link href={url} className={className}>
+function LinkOrNot({ href, children, className }: LinkOrNotProps) {
+  return href ? (
+    <Link href={href} className={className}>
       {children}
     </Link>
   ) : (
@@ -36,12 +42,27 @@ type MenuItemProps = {
 
 export function MenuItem({ item }: MenuItemProps) {
   if (item.children) {
-    return <>With Children</>;
+    return (
+      <NavigationMenuItem>
+        <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
+        <NavigationMenuContent>
+          <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+            {item.children.map((child, key) => (
+              <ListItem
+                href={child.url!}
+                title={child.title}
+                key={key}
+              ></ListItem>
+            ))}
+          </ul>
+        </NavigationMenuContent>
+      </NavigationMenuItem>
+    );
   } else {
     return (
       <NavigationMenuLink asChild>
         <LinkOrNot
-          url={item.url}
+          href={item.url}
           className="group inline-flex h-9 w-max items-center justify-center rounded-md hover:bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
         >
           {item.title}
@@ -50,14 +71,43 @@ export function MenuItem({ item }: MenuItemProps) {
     );
   }
 }
+
+const ListItem = React.forwardRef<
+  React.ElementRef<"a">,
+  React.ComponentPropsWithoutRef<"a">
+>(({ className, title, children, href, ...props }, ref) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <Link
+          ref={ref}
+          href={href!}
+          className={cn(
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            className
+          )}
+          {...props}
+        >
+          <div className="text-sm font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+            {children}
+          </p>
+        </Link>
+      </NavigationMenuLink>
+    </li>
+  );
+});
+ListItem.displayName = "ListItem";
+
 type SiteHeaderProps = {
   siteName: string;
   menu: IMenuItem[];
+  right: ReactNode;
 };
 
-export function SiteHeader({ siteName, menu }: SiteHeaderProps) {
+export function SiteHeader({ siteName, menu, right }: SiteHeaderProps) {
   return (
-    <header className="flex w-full shrink-0 items-center px-4 md:px-6 py-4 bg-gray-100">
+    <header className="flex w-full shrink-0 items-center px-4 md:px-6 py-4 bg-gray-100 min-h-[68px]">
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="outline" size="icon" className="lg:hidden">
@@ -73,16 +123,30 @@ export function SiteHeader({ siteName, menu }: SiteHeaderProps) {
             {siteName}
             <span className="sr-only">{siteName}</span>
           </Link>
-          <div className="grid gap-2 py-6">
+
+          <div className="grid gap-2 py-6 overflow-y-auto h-full">
             {menu.map((item, key) => (
-              <Link
-                key={key}
-                href={item.url!}
-                className="flex w-full items-center py-2 text-lg font-semibold"
-                prefetch={false}
-              >
-                {item.title}
-              </Link>
+              <Fragment key={key}>
+                <SheetClose asChild>
+                  <LinkOrNot
+                    href={item.url}
+                    className="flex w-full items-center py-2 text-lg font-semibold"
+                  >
+                    {item.title}
+                  </LinkOrNot>
+                </SheetClose>
+                {item.children?.map((child, subkey) => (
+                  <SheetClose asChild key={subkey}>
+                    <Link
+                      href={child.url!}
+                      className="flex w-50 items-center"
+                      prefetch={false}
+                    >
+                      {child.title}
+                    </Link>
+                  </SheetClose>
+                ))}
+              </Fragment>
             ))}
           </div>
         </SheetContent>
@@ -98,7 +162,7 @@ export function SiteHeader({ siteName, menu }: SiteHeaderProps) {
           ))}
         </NavigationMenuList>
       </NavigationMenu>
-      <div className="ml-auto flex gap-2">&nbsp;</div>
+      <div className="ml-auto flex gap-2">{right}</div>
     </header>
   );
 }
