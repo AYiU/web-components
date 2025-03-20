@@ -5,8 +5,8 @@ import {
   SheetHeader,
   SheetTitle,
   SheetClose,
-} from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
+} from "../ui/sheet";
+import { Button } from "../ui/button";
 import Link from "next/link";
 import {
   NavigationMenu,
@@ -15,7 +15,7 @@ import {
   NavigationMenuItem,
   NavigationMenuTrigger,
   NavigationMenuContent,
-} from "@/components/ui/navigation-menu";
+} from "../ui/navigation-menu";
 import { IMenuItem } from "../types";
 import React, { Fragment, ReactNode } from "react";
 import { cn } from "@/lib/utils";
