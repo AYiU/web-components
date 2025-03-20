@@ -18,7 +18,7 @@ import {
 } from "../ui/navigation-menu";
 import { IMenuItem } from "../types";
 import React, { Fragment, ReactNode } from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "../../lib/utils";
 
 type LinkOrNotProps = {
   href: string | undefined;
