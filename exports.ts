@@ -5,3 +5,4 @@ export * from "./components/loading-animation/loading-animation";
 export * from "./components/mi-ui/mi-card";
 export * from "./components/mi-ui/mi-input";
 export * from "./components/site/site-header";
+export * from "./components/types";

@@ -102,7 +102,7 @@ ListItem.displayName = "ListItem";
 type SiteHeaderProps = {
   siteName: string;
   menu: IMenuItem[];
-  right: ReactNode;
+  right?: ReactNode;
 };
 
 export function SiteHeader({ siteName, menu, right }: SiteHeaderProps) {
