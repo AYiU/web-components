@@ -1,4 +1,4 @@
-import { Input } from "../ui/input.js";
+import { Input } from "../ui/input";
 
 type MiInputProps = {
   name: string;
