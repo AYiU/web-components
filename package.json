@@ -1,7 +1,7 @@
 {
   "name": "@yiuayiu/web-components",
   "description": "A collection of web components for Me",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "private": false,
   "main": "./dist/exports.js",
   "files": [

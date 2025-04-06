@@ -17,7 +17,7 @@ export function ClientPage() {
         Click Me
       </LoadingButton>
 
-      <MiCard title="Card Title" footer={<div>Footer Content</div>}>
+      <MiCard image="/images/dummy.png" title="Card Title" footer={<div>Footer Content</div>}>
         Content
       </MiCard>
 
