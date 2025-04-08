@@ -17,9 +17,27 @@ export function ClientPage() {
         Click Me
       </LoadingButton>
 
-      <MiCard image="/images/dummy.png" title="Card Title" footer={<div>Footer Content</div>}>
-        Content
-      </MiCard>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 my-2 card-grid">
+        <MiCard
+          image="/images/dummy.png"
+          title="Card Title"
+          footer={<div>Footer Content</div>}
+        >
+          Content
+        </MiCard>
+        <MiCard
+          image="/images/dummy.png"
+          title="Card Title"
+          footer={<div>Footer Content</div>}
+        >
+          Content
+        </MiCard>
+        <a href="/">
+          <MiCard image="/images/dummy.png" title="Card Title">
+            Content
+          </MiCard>
+        </a>
+      </div>
 
       <MiInput name="input" placeholder="Enter text here" />
 

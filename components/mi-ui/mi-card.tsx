@@ -19,12 +19,12 @@ type MiCardProps = {
 export function MiCard({
   image,
   title,
-  className,
+  className = "",
   footer,
   children,
 }: MiCardProps) {
   return (
-    <Card className={`${className} flex flex-col`}>
+    <Card className={`${className} flex flex-col h-full`}>
       {image && (
         <Image
           src={image}
