@@ -14,7 +14,7 @@ type LinkListGroupProps = {
 
 export function LinkListGroup({ items, defaultLinkAttr }: LinkListGroupProps) {
   return (
-    <ul className="px-0 bg-white border border-gray-200 rounded-lg">
+    <ul className="px-0 border border-gray-200 rounded-lg">
       {items.map((item, key) => {
         return (
           <li
