@@ -107,11 +107,11 @@ type SiteHeaderProps = {
 
 export function SiteHeader({ siteName, menu, right }: SiteHeaderProps) {
   return (
-    <header className="flex w-full shrink-0 items-center px-4 md:px-6 py-4 bg-gray-100 min-h-[68px]">
+    <header className="flex w-full shrink-0 items-center px-4 md:px-6 py-4 min-h-[68px] border-b">
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant="outline" size="icon" className="lg:hidden">
-            <MenuIcon className="h-6 w-6" />
+          <Button size="icon" className="lg:hidden">
+            <MenuIcon className="h-6 w-6 " />
             <span className="sr-only">Toggle navigation menu</span>
           </Button>
         </SheetTrigger>
@@ -124,7 +124,7 @@ export function SiteHeader({ siteName, menu, right }: SiteHeaderProps) {
             <span className="sr-only">{siteName}</span>
           </Link>
 
-          <div className="grid gap-2 py-6 overflow-y-auto h-full">
+          <div className="grid gap-2 py-6 overflow-y-auto">
             {menu.map((item, key) => (
               <Fragment key={key}>
                 <SheetClose asChild>
@@ -136,7 +136,7 @@ export function SiteHeader({ siteName, menu, right }: SiteHeaderProps) {
                   </LinkOrNot>
                 </SheetClose>
                 {item.children?.map((child, subkey) => (
-                  <SheetClose asChild key={subkey}>
+                  <SheetClose asChild key={subkey} className="pl-4">
                     <Link
                       href={child.url!}
                       className="flex w-50 items-center"
