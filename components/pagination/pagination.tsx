@@ -47,8 +47,8 @@ export function Pagination({ totalPage, currentPage }: PaginationProps) {
               href={u}
               aria-current="page"
               className={`relative z-10 inline-flex items-center ${
-                currentPage === page ? "" : ""
-              } px-4 py-2 text-sm focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ring-1 ring-inset ring-sky`}
+                currentPage === page ? "bg-gray-400 text-gray-900 " : ""
+              } px-4 py-2 text-sm ring-1 ring-inset ring-sky`}
             >
               {page}
             </Link>
@@ -58,7 +58,7 @@ export function Pagination({ totalPage, currentPage }: PaginationProps) {
         <OptionalLink
           href={nextLink}
           className={`relative inline-flex items-center rounded-r-md px-2 py-2 ${
-            nextLink ? "text-sky hover:bg-gray-50" : ""
+            nextLink ? "text-sky" : ""
           } ring-1 ring-inset ring-sky`}
         >
           <span className="sr-only">Next</span>

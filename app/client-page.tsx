@@ -4,6 +4,7 @@ import { LoadingButton } from "@/components/button/loading-button";
 import { LinkListGroup } from "@/components/link-list-group/link-list-group";
 import { MiCard } from "@/components/mi-ui/mi-card";
 import { MiInput } from "@/components/mi-ui/mi-input";
+import { Pagination } from "@/components/pagination/pagination";
 
 export function ClientPage() {
   return (
@@ -42,6 +43,8 @@ export function ClientPage() {
       <MiInput name="input" placeholder="Enter text here" />
 
       <LinkListGroup items={[{ title: "Item Title", url: "/item-link" }]} />
+
+      <Pagination currentPage={1} totalPage={100} />
     </>
   );
 }
