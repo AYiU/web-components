@@ -9,7 +9,7 @@ import {
   BreadcrumbSeparator,
   BreadcrumbList,
 } from "../ui/breadcrumb";
-import { IPageInfo } from "../types";
+import type { IPageInfo } from "../types";
 
 type BreadcrumbsType = {
   items: IPageInfo[];
@@ -22,6 +22,7 @@ export function Breadcrumb({ items }: BreadcrumbsType) {
         <BreadcrumbList>
           {items.map((b, k) => {
             return (
+              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
               <React.Fragment key={k}>
                 {k > 0 && <BreadcrumbSeparator />}
                 <BreadcrumbItem>

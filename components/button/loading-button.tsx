@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useState, ReactNode, MouseEventHandler } from "react";
+import React, { useState, type ReactNode, type MouseEventHandler } from "react";
 import { Button } from "../ui/button";
 
 export type MouseOnClickEvent = MouseEventHandler<HTMLButtonElement>;
 
 export type loadingState = "" | "loading" | "error" | "done";
-
 
 export type LoadingButtonType = {
   className?: string;
@@ -31,13 +30,13 @@ export function LoadingButton({
 
 function useLoadingButton(
   children: ReactNode,
-  asyncOnClick?: MouseOnClickEvent
+  asyncOnClick?: MouseOnClickEvent,
 ) {
   const [state, setState] = useState<loadingState>("");
 
   const onButtonClick: MouseEventHandler<HTMLButtonElement> = async (event) => {
     setState("loading");
-    
+
     if (asyncOnClick) {
       try {
         await asyncOnClick(event);
@@ -56,11 +55,11 @@ function useLoadingButton(
 
   let c = children;
   if ("loading" === state) {
-    c = <>Loading</>;
+    c = "Loading";
   } else if ("error" === state) {
-    c = <>Error</>;
+    c = "Error";
   } else if ("done" === state) {
-    c = <>Done</>;
+    c = "Done";
   }
 
   return { props, children: c };

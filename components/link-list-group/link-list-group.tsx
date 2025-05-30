@@ -1,5 +1,5 @@
-import React from "react";
-import { ILink } from "../types";
+import type React from "react";
+import type { ILink } from "../types";
 import Link from "next/link";
 
 type DefaultLinkAttr = {
@@ -18,6 +18,7 @@ export function LinkListGroup({ items, defaultLinkAttr }: LinkListGroupProps) {
       {items.map((item, key) => {
         return (
           <li
+            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
             key={key}
             className={`w-full px-4 py-2 border-b border-gray-200 ${
               0 === key ? "rounded-t-lg" : ""

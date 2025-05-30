@@ -13,9 +13,9 @@ export function OptionalLink({ href, children, ...props }: OptionalLinkProps) {
         {children}
       </Link>
     );
-  } else if (Object.keys(props).length > 0) {
-    return <span {...props}>{children}</span>;
-  } else {
-    return <>{children}</>;
   }
+  if (Object.keys(props).length > 0) {
+    return <span {...props}>{children}</span>;
+  }
+  return <>{children}</>;
 }

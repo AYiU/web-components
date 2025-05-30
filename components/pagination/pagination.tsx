@@ -39,10 +39,11 @@ export function Pagination({ totalPage, currentPage }: PaginationProps) {
         {r.map((page, key) => {
           const url = new URL("", "https://dummy.com");
           url.searchParams.set("page", page.toString());
-          const u = "?" + url.searchParams.toString();
+          const u = `?${url.searchParams.toString()}`;
 
           return (
             <Link
+              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
               key={key}
               href={u}
               aria-current="page"

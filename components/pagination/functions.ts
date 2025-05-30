@@ -1,12 +1,12 @@
 // https://gist.github.com/kottenator/9d936eb3e4e3c3e02598
 export function paginationCal(currentPage: number, totalPage: number) {
-  const current = currentPage,
-    last = totalPage,
-    delta = 2,
-    left = current - delta,
-    right = current + delta + 1,
-    range: number[] = [],
-    rangeWithDots: (string|number)[] = [];
+  const current = currentPage;
+  const last = totalPage;
+  const delta = 2;
+  const left = current - delta;
+  const right = current + delta + 1;
+  const range: number[] = [];
+  const rangeWithDots: (string | number)[] = [];
 
   let l: number | undefined = undefined;
 

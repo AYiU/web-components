@@ -16,8 +16,8 @@ import {
   NavigationMenuTrigger,
   NavigationMenuContent,
 } from "../ui/navigation-menu";
-import { IMenuItem } from "../types";
-import React, { Fragment, ReactNode } from "react";
+import type { IMenuItem } from "../types";
+import React, { Fragment, type ReactNode } from "react";
 import { cn } from "../../lib/utils";
 
 type LinkOrNotProps = {
@@ -49,27 +49,28 @@ export function MenuItem({ item }: MenuItemProps) {
           <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
             {item.children.map((child, key) => (
               <ListItem
+                // biome-ignore lint/style/noNonNullAssertion: <explanation>
                 href={child.url!}
                 title={child.title}
+                // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                 key={key}
-              ></ListItem>
+              />
             ))}
           </ul>
         </NavigationMenuContent>
       </NavigationMenuItem>
     );
-  } else {
-    return (
-      <NavigationMenuLink asChild>
-        <LinkOrNot
-          href={item.url}
-          className="group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-        >
-          {item.title}
-        </LinkOrNot>
-      </NavigationMenuLink>
-    );
   }
+  return (
+    <NavigationMenuLink asChild>
+      <LinkOrNot
+        href={item.url}
+        className="group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
+      >
+        {item.title}
+      </LinkOrNot>
+    </NavigationMenuLink>
+  );
 }
 
 const ListItem = React.forwardRef<
@@ -81,10 +82,11 @@ const ListItem = React.forwardRef<
       <NavigationMenuLink asChild>
         <Link
           ref={ref}
+          // biome-ignore lint/style/noNonNullAssertion: <explanation>
           href={href!}
           className={cn(
             "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
+            className,
           )}
           {...props}
         >
@@ -126,6 +128,7 @@ export function SiteHeader({ siteName, menu, right }: SiteHeaderProps) {
 
           <div className="grid gap-2 py-6 overflow-y-auto">
             {menu.map((item, key) => (
+              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
               <Fragment key={key}>
                 <SheetClose asChild>
                   <LinkOrNot
@@ -136,8 +139,10 @@ export function SiteHeader({ siteName, menu, right }: SiteHeaderProps) {
                   </LinkOrNot>
                 </SheetClose>
                 {item.children?.map((child, subkey) => (
+                  // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                   <SheetClose asChild key={subkey} className="pl-4">
                     <Link
+                      // biome-ignore lint/style/noNonNullAssertion: <explanation>
                       href={child.url!}
                       className="flex w-50 items-center"
                       prefetch={false}
@@ -158,6 +163,7 @@ export function SiteHeader({ siteName, menu, right }: SiteHeaderProps) {
       <NavigationMenu className="hidden lg:flex">
         <NavigationMenuList>
           {menu.map((item, key) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
             <MenuItem key={key} item={item} />
           ))}
         </NavigationMenuList>
@@ -173,6 +179,7 @@ type MenuIconProps = {
 
 function MenuIcon(props: MenuIconProps) {
   return (
+    // biome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
