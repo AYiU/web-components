@@ -120,7 +120,7 @@ export function SiteHeader({ siteName, menu, right }: SiteHeaderProps) {
           <SheetTitle>&nbsp;</SheetTitle>
         </SheetHeader>
         <SheetContent side="left">
-          <Link href="#" prefetch={false}>
+          <Link href="/" prefetch={false}>
             {siteName}
             <span className="sr-only">{siteName}</span>
           </Link>
@@ -155,7 +155,7 @@ export function SiteHeader({ siteName, menu, right }: SiteHeaderProps) {
           </div>
         </SheetContent>
       </Sheet>
-      <Link href="#" className="text-lg mr-6 hidden lg:flex" prefetch={false}>
+      <Link href="/" className="text-lg mr-6 hidden lg:flex" prefetch={false}>
         {siteName}
         <span className="sr-only">{siteName}</span>
       </Link>
