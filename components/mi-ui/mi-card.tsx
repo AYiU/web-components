@@ -1,12 +1,12 @@
+import Image from "next/image";
 import type React from "react";
 import {
   Card,
-  CardHeader,
-  CardTitle,
   CardContent,
   CardFooter,
+  CardHeader,
+  CardTitle,
 } from "../ui/card";
-import Image from "next/image";
 
 type MiCardProps = {
   image?: string;
@@ -24,7 +24,7 @@ export function MiCard({
   children,
 }: MiCardProps) {
   return (
-    <Card className={`${className} flex flex-col h-full`}>
+    <Card className={`flex flex-col h-full ${className}`}>
       {image && (
         <Image
           src={image}

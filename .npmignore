@@ -1,6 +1,6 @@
 app/
 components/
+config/
 public/
 lib/
 node_modules/
-

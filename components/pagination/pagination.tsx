@@ -1,7 +1,7 @@
-import { paginationCal } from "./functions";
-import { OptionalLink } from "../optional-link/optional-link";
-import { NextArraw, PreviousArrow } from "./svg-icon";
 import Link from "next/link";
+import { OptionalLink } from "../optional-link/optional-link";
+import { paginationCal } from "./functions";
+import { NextArraw, PreviousArrow } from "./svg-icon";
 
 type PaginationProps = {
   totalPage: number;
@@ -9,12 +9,12 @@ type PaginationProps = {
 };
 
 export function Pagination({ totalPage, currentPage }: PaginationProps) {
-  let previewLink: string | undefined = undefined;
+  let previewLink: string | undefined;
   if (currentPage > 1) {
     previewLink = `?page=${currentPage - 1}`;
   }
 
-  let nextLink: string | undefined = undefined;
+  let nextLink: string | undefined;
   if (currentPage < totalPage) {
     nextLink = `?page=${currentPage + 1}`;
   }
@@ -43,7 +43,7 @@ export function Pagination({ totalPage, currentPage }: PaginationProps) {
 
           return (
             <Link
-              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+              // biome-ignore lint/suspicious/noArrayIndexKey: *
               key={key}
               href={u}
               aria-current="page"

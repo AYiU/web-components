@@ -1,24 +1,24 @@
+import Link from "next/link";
+import React, { Fragment, type ReactNode } from "react";
+import { cn } from "../../lib/utils";
+import type { IMenuItem } from "../types";
+import { Button } from "../ui/button";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "../ui/navigation-menu";
 import {
   Sheet,
-  SheetTrigger,
+  SheetClose,
   SheetContent,
   SheetHeader,
   SheetTitle,
-  SheetClose,
+  SheetTrigger,
 } from "../ui/sheet";
-import { Button } from "../ui/button";
-import Link from "next/link";
-import {
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuLink,
-  NavigationMenuItem,
-  NavigationMenuTrigger,
-  NavigationMenuContent,
-} from "../ui/navigation-menu";
-import type { IMenuItem } from "../types";
-import React, { Fragment, type ReactNode } from "react";
-import { cn } from "../../lib/utils";
 
 type LinkOrNotProps = {
   href: string | undefined;
@@ -49,10 +49,9 @@ export function MenuItem({ item }: MenuItemProps) {
           <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
             {item.children.map((child, key) => (
               <ListItem
-                // biome-ignore lint/style/noNonNullAssertion: <explanation>
-                href={child.url!}
+                href={child.url}
                 title={child.title}
-                // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                // biome-ignore lint/suspicious/noArrayIndexKey: *
                 key={key}
               />
             ))}
@@ -82,7 +81,7 @@ const ListItem = React.forwardRef<
       <NavigationMenuLink asChild>
         <Link
           ref={ref}
-          // biome-ignore lint/style/noNonNullAssertion: <explanation>
+          // biome-ignore lint/style/noNonNullAssertion: *
           href={href!}
           className={cn(
             "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
@@ -128,7 +127,7 @@ export function SiteHeader({ siteName, menu, right }: SiteHeaderProps) {
 
           <div className="grid gap-2 py-6 overflow-y-auto">
             {menu.map((item, key) => (
-              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+              // biome-ignore lint/suspicious/noArrayIndexKey: *
               <Fragment key={key}>
                 <SheetClose asChild>
                   <LinkOrNot
@@ -139,10 +138,10 @@ export function SiteHeader({ siteName, menu, right }: SiteHeaderProps) {
                   </LinkOrNot>
                 </SheetClose>
                 {item.children?.map((child, subkey) => (
-                  // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                  // biome-ignore lint/suspicious/noArrayIndexKey: *
                   <SheetClose asChild key={subkey} className="pl-4">
                     <Link
-                      // biome-ignore lint/style/noNonNullAssertion: <explanation>
+                      // biome-ignore lint/style/noNonNullAssertion: *
                       href={child.url!}
                       className="flex w-50 items-center"
                       prefetch={false}
@@ -163,7 +162,7 @@ export function SiteHeader({ siteName, menu, right }: SiteHeaderProps) {
       <NavigationMenu className="hidden lg:flex">
         <NavigationMenuList>
           {menu.map((item, key) => (
-            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+            // biome-ignore lint/suspicious/noArrayIndexKey: *
             <MenuItem key={key} item={item} />
           ))}
         </NavigationMenuList>
@@ -179,7 +178,7 @@ type MenuIconProps = {
 
 function MenuIcon(props: MenuIconProps) {
   return (
-    // biome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
+    // biome-ignore lint/a11y/noSvgWithoutTitle: *
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"

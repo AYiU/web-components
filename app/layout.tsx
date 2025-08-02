@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site/site-header";
+import { menuItems } from "@/config/menu-items";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,21 +27,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background` }
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background`}
       >
-        <SiteHeader
-          siteName="Welcome"
-          menu={[
-            { title: "Home", url: "/" },
-            { title: "More", url: "/more", children: [
-              { title: "More 1", url: "/more/1" },
-              { title: "More 2", url: "/more/2" },
-              { title: "More 3", url: "/more/3" },
-            ] },
-            { title: "About", url: "/about" },
-          ]}
-        />
-        {children}
+        <SiteHeader siteName="Welcome" menu={menuItems} />
+        <div className="container mx-auto px-4 my-4">{children}</div>
       </body>
     </html>
   );

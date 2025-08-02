@@ -1,28 +1,28 @@
+import Link from "next/link";
 import React from "react";
 
-import Link from "next/link";
-
+import type { IPageInfo } from "../types";
 import {
-  Breadcrumb as XBreadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
-  BreadcrumbSeparator,
   BreadcrumbList,
+  BreadcrumbSeparator,
+  Breadcrumb as XBreadcrumb,
 } from "../ui/breadcrumb";
-import type { IPageInfo } from "../types";
 
 type BreadcrumbsType = {
+  className?: string;
   items: IPageInfo[];
 };
 
-export function Breadcrumb({ items }: BreadcrumbsType) {
+export function Breadcrumb({ items, ...props }: BreadcrumbsType) {
   return (
     items.length > 0 && (
-      <XBreadcrumb>
+      <XBreadcrumb {...props}>
         <BreadcrumbList>
           {items.map((b, k) => {
             return (
-              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+              // biome-ignore lint/suspicious/noArrayIndexKey: *
               <React.Fragment key={k}>
                 {k > 0 && <BreadcrumbSeparator />}
                 <BreadcrumbItem>

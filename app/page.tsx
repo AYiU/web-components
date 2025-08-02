@@ -1,30 +1,21 @@
-import { SiteHeader } from "@/components/site/site-header";
 import { Breadcrumb } from "@/components/breadcrumb/breadcrumb";
-import { LoadingButton } from "@/components/button/loading-button";
-import { ClientPage } from "./client-page";
+import { uiList } from "@/config/menu-items";
+import { LinkListGroup } from "@/exports";
 
 export default function Home() {
-  function handleClick() {
-    
-  }
-
   return (
     <>
-      <SiteHeader
-        siteName="Welcome"
-        menu={[
-          { title: "Home", url: "/" },
-          { title: "About", url: "/about" },
-        ]}
-      />
       <Breadcrumb
-        items={[
-          { title: "Home", url: "/", description: "Home" },
-          { title: "About", url: "/about", description: "About" },
-        ]}
+        className="my-2"
+        items={[{ title: "Home", url: "/", description: "Home" }]}
       />
 
-      <ClientPage />
+      <LinkListGroup
+        items={uiList.map((item) => ({
+          title: item.charAt(0).toUpperCase() + item.slice(1),
+          url: `/ui/${item}`,
+        }))}
+      />
     </>
   );
 }

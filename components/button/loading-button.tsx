@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, type ReactNode, type MouseEventHandler } from "react";
+import { type MouseEventHandler, type ReactNode, useState } from "react";
 import { Button } from "../ui/button";
 
 export type MouseOnClickEvent = MouseEventHandler<HTMLButtonElement>;
