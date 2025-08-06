@@ -2,6 +2,7 @@ export const uiList = [
   "button",
   "card",
   "input",
+  "layout",
   "loading-animation",
   "optional-link",
   "pagination",
