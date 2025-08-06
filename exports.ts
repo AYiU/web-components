@@ -1,5 +1,7 @@
 export * from "./components/breadcrumb/breadcrumb";
 export * from "./components/button/loading-button";
+export * from "./components/if/if";
+export * from "./components/if/if-else";
 export * from "./components/layout/grid-layout";
 export * from "./components/link-list-group/link-list-group";
 export * from "./components/loading-animation/loading-animation";
