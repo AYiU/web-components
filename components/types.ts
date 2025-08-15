@@ -1,14 +1,12 @@
-export interface IPageInfo {
-  url: string;
-  title: string;
-  description: string;
-}
-
 export interface ILink {
   url: string;
   title: string;
 }
 
-export type IMenuItem = ILink & {
+export interface IPageInfo extends ILink {
+  description: string;
+}
+
+export interface IMenuItem extends ILink {
   children?: IMenuItem[];
 };
