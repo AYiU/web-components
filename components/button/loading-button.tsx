@@ -57,9 +57,9 @@ function useLoadingButton(
   if ("loading" === state) {
     c = "Loading";
   } else if ("error" === state) {
-    c = "Error";
+    c = "🚨 Error";
   } else if ("done" === state) {
-    c = "Done";
+    c = "✔️ Done";
   }
 
   return { props, children: c };
