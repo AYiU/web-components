@@ -1,4 +1,5 @@
 export const uiList = [
+  "breadcrumb",
   "button",
   "card",
   "input",
