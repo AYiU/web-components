@@ -2,6 +2,7 @@
 
 import { type MouseEventHandler, type ReactNode, useState } from "react";
 import { Button } from "../ui/button";
+import { StateButton } from "./state-button";
 
 export type MouseOnClickEvent = MouseEventHandler<HTMLButtonElement>;
 
@@ -12,26 +13,26 @@ export type LoadingButtonType = {
   children: ReactNode;
   color?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  loadingAnimate?: boolean;
 };
 
 export function LoadingButton({
   children: inChildren,
   onClick,
+  loadingAnimate,
   ...restProps
 }: LoadingButtonType) {
-  const { props, children } = useLoadingButton(inChildren, onClick);
+  console.log("LoadingButton render", loadingAnimate);
+  const { props, state } = useLoadingButton(onClick);
 
   return (
-    <Button {...restProps} {...props}>
-      {children}
-    </Button>
+    <StateButton {...restProps} {...props} state={state} as={Button}>
+      {inChildren}
+    </StateButton>
   );
 }
 
-function useLoadingButton(
-  children: ReactNode,
-  asyncOnClick?: MouseOnClickEvent,
-) {
+function useLoadingButton(asyncOnClick?: MouseOnClickEvent) {
   const [state, setState] = useState<loadingState>("");
 
   const onButtonClick: MouseEventHandler<HTMLButtonElement> = async (event) => {
@@ -53,14 +54,5 @@ function useLoadingButton(
     disabled: state === "loading",
   };
 
-  let c = children;
-  if ("loading" === state) {
-    c = "Loading";
-  } else if ("error" === state) {
-    c = "🚨 Error";
-  } else if ("done" === state) {
-    c = "✔️ Done";
-  }
-
-  return { props, children: c };
+  return { props, state };
 }

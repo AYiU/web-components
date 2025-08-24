@@ -1,3 +1,4 @@
+import Link from "next/dist/client/link";
 import { MiCard } from "@/components/mi-ui/mi-card";
 
 export default function CardPage() {
@@ -18,11 +19,11 @@ export default function CardPage() {
       >
         Content
       </MiCard>
-      <a href="/">
+      <Link href="/">
         <MiCard className="m-2" image="/images/dummy.png" title="Card Title">
           Content
         </MiCard>
-      </a>
+      </Link>
     </>
   );
 }
