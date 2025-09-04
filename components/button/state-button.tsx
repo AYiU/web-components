@@ -1,10 +1,9 @@
+"use client";
+
 import type React from "react";
 
-import type { MouseEventHandler } from "react";
-
-import classes from "./state-button.module.css";
-
-export type loadingState = "" | "loading" | "error" | "done";
+import { LoadingAnimation } from "../loading-animation/loading-animation";
+import type { loadingState, MouseOnClickEvent } from "./types";
 
 export type StateButtonType = {
   state: loadingState;
@@ -12,13 +11,13 @@ export type StateButtonType = {
   className?: string;
   children: React.ReactNode;
   type?: "submit";
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseOnClickEvent;
 };
 
 function LoadingChildren() {
   return (
     <>
-      <div className={classes.loading}></div>
+      <LoadingAnimation />
       Saving
     </>
   );
@@ -49,7 +48,7 @@ export function StateButton({
       onClick={onClick}
       disabled={disabled}
       type={type}
-      className={className}
+      className={`${className} h-10`}
     >
       {"done" === state && <SavedChildren />}
       {"error" === state && <ErrorChildren />}
