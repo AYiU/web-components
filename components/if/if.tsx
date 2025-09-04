@@ -6,7 +6,6 @@ interface IfProps {
 }
 
 export const If: React.FC<IfProps> = ({ condition, children }) => {
-  console.debug("If condition", condition);
   return condition ? children : null;
 };
 

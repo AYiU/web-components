@@ -19,7 +19,6 @@ export function LoadingButton({
   loadingAnimate,
   ...restProps
 }: LoadingButtonType) {
-  console.log("LoadingButton render", loadingAnimate);
   const { props, state } = useLoadingButton(onClick);
 
   return (
