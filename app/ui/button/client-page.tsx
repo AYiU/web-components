@@ -2,10 +2,8 @@
 
 import { useState } from "react";
 import { LoadingButton } from "@/components/button/loading-button";
-import {
-  type loadingState,
-  StateButton,
-} from "@/components/button/state-button";
+import { StateButton } from "@/components/button/state-button";
+import type { loadingState } from "@/components/button/types";
 import { Button } from "@/components/ui/button";
 
 export function ButtonClientPage() {
